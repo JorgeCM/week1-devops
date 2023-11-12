@@ -27,3 +27,10 @@ jobs:
       - name: Run tests
         run: |
           python -m pytest -v tests
+      - name: Report coverage
+        run: |
+          python -m pytest --cov-report term --cov-report xml:pytest-coverage.xml tests --cov=tests
+      - name: Pytest coverage comment
+        uses: MishaKav/pytest-coverage-comment@main
+        with:
+          junitxml-path: ./pytest-coverage.xml
